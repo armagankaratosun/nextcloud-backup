@@ -9,4 +9,4 @@
 
     - name: trigger => url
       uri:
-        url: {{nextcloud_cron_url}}
+        url: {{ nextcloud_cron_url }}
