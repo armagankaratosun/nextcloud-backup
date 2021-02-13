@@ -1,6 +1,6 @@
 # docker-nextcloud-backup
 
-A simple Ansible playbook for taking backups of dockerized Nextcloud deployments
+A simple Ansible playbook for taking backups of dockerized Nextcloud deployments.
 
 # Quickstart
 
