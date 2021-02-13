@@ -1,6 +1,6 @@
-# docker-nextcloud-backup
+# nextcloud-maintenance
 
-A simple Ansible playbook for taking backups of dockerized Nextcloud deployments.
+Simple Ansible playbooks for basic maintenance tasks of dockerized Nextcloud deployments.
 
 # Quickstart
 
