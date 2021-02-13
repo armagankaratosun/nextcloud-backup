@@ -1,0 +1,12 @@
+---
+- name: Ansible Nextcloud Webcron Job
+  hosts: "{{ nextcloud_host }}"
+  become: true
+  become_user: root
+  become_method: sudo
+  vars_files: defaults.yml
+  tasks: 
+
+    - name: trigger => url
+      uri:
+        url: {{nextcloud_cron_url}}
