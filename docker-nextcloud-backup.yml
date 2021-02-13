@@ -1,0 +1,29 @@
+---
+- name: Backup Nextcloud 
+  hosts: "{{ nextcloud_host }}"
+  become: true
+  become_user: root
+  become_method: sudo
+  vars_files: defaults.yml
+  tasks: 
+
+
+    - name: maintenance:mode => on
+      shell: docker exec {{ docker_container_name}} sudo -u www-data php /var/www/html/occ maintenance:mode --on
+
+    - name: dump => database 
+      shell: docker exec {{postgresql_container_name}} /usr/bin/pg_dumpall -c -U nextcloud > {{database_dump_path}}/dump_{{ ansible_date_time.date }}.sql
+      
+    - name: rsync => backup data files 
+      shell: rsync -Aavx {{nextcloud_data_path}} {{ dest_username }}@{{dest_host}}:{{dest_path}}
+
+    - name: rsync => config files 
+      shell: rsync -Aavx {{nextcloud_config_path}} {{ dest_username }}@{{dest_host}}:{{dest_path}}
+      when: backup_config == true
+
+    - name: rsync => database dump 
+      shell: rsync -Aavx {{database_dump_path}}/dump_{{ ansible_date_time.date }}.sql {{ dest_username }}@{{dest_host}}:{{dest_path}}
+      when: database_backup == true
+
+    - name: maintenance:mode => off
+      shell: docker exec {{ docker_container_name}} sudo -u www-data php /var/www/html/occ maintenance:mode --off

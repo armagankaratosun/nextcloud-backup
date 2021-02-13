@@ -1,0 +1,16 @@
+# Nextcloud config
+nextcloud_host: # hostname/ip address of the docker host that runs the nextcloud instance
+docker_container_name: # nextcloud docker container name or id 
+backup_config: true # backup nextcloud config? 
+nextcloud_config_path: # nextcloud config dir path 
+nextcloud_data_path: # nextcloud data path 
+
+# Database config
+database_backup: # backup database?
+postgresql_container_name: # postgresql container name or id 
+database_dump_path: # database dump path on the docker host 
+
+# Backup destination
+dest_host: # backup destination host 
+dest_path: # backup path on the destination host
+dest_username: # username for rsync
