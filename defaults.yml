@@ -4,7 +4,7 @@ docker_container_name: # nextcloud docker container name or id
 backup_config: true # backup nextcloud config? 
 nextcloud_config_path: # nextcloud config dir path 
 nextcloud_data_path: # nextcloud data path 
-
+nextcloud_cron_url: # webcron url https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/background_jobs_configuration.html#webcron
 # Database config
 database_backup: # backup database?
 postgresql_container_name: # postgresql container name or id 
