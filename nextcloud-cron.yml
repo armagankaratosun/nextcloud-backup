@@ -1,6 +1,6 @@
 ---
 - name: Ansible Nextcloud Webcron Job
-  hosts: "{{ nextcloud_host }}"
+  hosts: all
   become: true
   become_user: root
   become_method: sudo
