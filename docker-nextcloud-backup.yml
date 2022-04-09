@@ -9,7 +9,7 @@
 
 
     - name: maintenance:mode => on
-      shell: docker exec {{ docker_container_name}} sudo -u www-data php /var/www/html/occ maintenance:mode --on
+      shell: docker exec {{ docker_container_name}} sudo -u www-data php -d memory_limit=-1 /var/www/html/occ maintenance:mode --on
 
     - name: dump => database 
       shell: docker exec {{postgresql_container_name}} /usr/bin/pg_dumpall -c -U nextcloud > {{database_dump_path}}/dump_{{ ansible_date_time.date }}.sql
@@ -26,4 +26,4 @@
       when: database_backup == true
 
     - name: maintenance:mode => off
-      shell: docker exec {{ docker_container_name}} sudo -u www-data php /var/www/html/occ maintenance:mode --off
+      shell: docker exec {{ docker_container_name}} sudo -u www-data php -d memory_limit=-1 /var/www/html/occ maintenance:mode --off
